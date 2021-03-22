@@ -35,11 +35,19 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
-    - name: Login to Heroku Container registry
+    - name: Login to Heroku
       env: 
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku login
-    - name: Build and push
+      run: heroku login -i
+    - name: Set Buildpack
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: heroku buildpacks:set https://github.com/heroku/heroku-buildpack-static -a dsp-statistics-panel
+    - name: Heroku install plugin
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: heroku plugins:install heroku-cli-static
+    - name: Heroku Deploy
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: heroku static:deploy -a ${{ secrets.HEROKU_APP_NAME }} dsp-statistics-panel 
