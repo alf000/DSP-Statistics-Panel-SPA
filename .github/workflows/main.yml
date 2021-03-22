@@ -38,15 +38,15 @@ jobs:
     - name: Login to Heroku
       env: 
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku login -i
+      run: heroku login -i ${{ secrets.HEROKU_APP_NAME }}
     - name: Set Buildpack
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku buildpacks:set https://github.com/heroku/heroku-buildpack-static -a dsp-statistics-panel
+      run: heroku buildpacks:set ${{ secrets.HEROKU_APP_NAME }} https://github.com/heroku/heroku-buildpack-static -a dsp-statistics-panel
     - name: Heroku install plugin
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku plugins:install heroku-cli-static
+      run: heroku plugins:install heroku-cli-static ${{ secrets.HEROKU_APP_NAME }}
     - name: Heroku Deploy
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
