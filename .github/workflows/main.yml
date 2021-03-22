@@ -35,15 +35,13 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
-    - name: Set Buildpack
-      env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku buildpacks:set ${{ secrets.HEROKU_APP_NAME }} https://github.com/heroku/heroku-buildpack-static -a dsp-statistics-panel
-    - name: Heroku install plugin
-      env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku plugins:install heroku-cli-static ${{ secrets.HEROKU_APP_NAME }}
-    - name: Heroku Deploy
-      env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku static:deploy -a ${{ secrets.HEROKU_APP_NAME }} dsp-statistics-panel 
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: CDNievas/heroku-action@v1.0 # This is the action
+        with:
+          heroku_email: "alf@herland.as"
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "dsp-statistics-panel "
+          buildpacks: "['https://github.com/heroku/heroku-buildpack-static']"
