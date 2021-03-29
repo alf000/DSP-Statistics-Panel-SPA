@@ -23,11 +23,12 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install expect
       run: sudo apt-get install expect
+    - name: Set execute
+      run: chmod 755 heroku-login.exp
     - name: Set build pack
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
         HEROKU_PASSWD: ${{ secrets.HEROKU_PASSWD }}
       run:
-        chmod 755 heroku-login.exp
         expect heroku-login.exp
