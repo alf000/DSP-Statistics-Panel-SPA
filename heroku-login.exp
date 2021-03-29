@@ -2,7 +2,7 @@
 spawn heroku login -i
 expect -exact "heroku: Enter your login credentials"
 expect -exact "Email:"
-send -- "$\{\{ secrets.HEROKU_EMAIL \}\}\r"
+send -- "\$\{\{ secrets.HEROKU_EMAIL \}\}\r"
 expect -exact "Password:"
-send -- "$\{\{ secrets.HEROKU_PASSWD \}\}\r"
+send -- "\$\{\{ secrets.HEROKU_PASSWD \}\}\r"
 expect eof
