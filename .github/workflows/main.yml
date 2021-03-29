@@ -28,7 +28,7 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
     - name: Install dependencies
-      run: dotnet publish
+      run: dotnet publish -c Release -o release
     - name: Set build pack
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
