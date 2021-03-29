@@ -4,5 +4,5 @@ expect -exact "heroku: Enter your login credentials"
 expect -exact "Email:"
 send -- "alf@herland.as\r"
 expect -exact "Password:"
-send -- "\$HEROKU_PASSWD\r"
+send -- "test123FEST\r"
 expect eof
