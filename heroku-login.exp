@@ -2,8 +2,8 @@
 set email [lindex $argv 0]
 set passwd [lindex $argv 1]
 spawn heroku login -i
-expect
-expect
+expect -exact " ›   Warning: Our terms of service have changed: "
+expect -exact " ›   https://dashboard.heroku.com/terms-of-service"
 expect -exact "heroku: Enter your login credentials"
 expect -exact "Email:"
 send "$email\r"
