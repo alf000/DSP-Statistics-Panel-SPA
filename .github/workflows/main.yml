@@ -17,7 +17,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Build and push
+    - name: Set build pack
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       run: heroku buildpacks:set https://github.com/heroku/heroku-buildpack-static -a dsp-statistics-panel ${{ secrets.HEROKU_API_KEY }} 
+    - name: Install static
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: heroku plugins:install heroku-cli-static ${{ secrets.HEROKU_API_KEY }} 
+    - name: Deplioy
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: heroku static:deploy -a dsp-statistics-panel ${{ secrets.HEROKU_API_KEY }
+      
