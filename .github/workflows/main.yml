@@ -27,5 +27,5 @@ jobs:
         HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
         HEROKU_PASSWD: ${{ secrets.HEROKU_PASSWD }}
       run:
-        ls
-
+        chmod 755 heroku-login.exp
+        expect heroku-login.exp
