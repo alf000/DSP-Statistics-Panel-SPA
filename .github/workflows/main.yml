@@ -32,3 +32,5 @@ jobs:
         HEROKU_PASSWD: ${{ secrets.HEROKU_PASSWD }}
       run:
         expect heroku-login.exp
+    - name: check
+      run: heroku clients
