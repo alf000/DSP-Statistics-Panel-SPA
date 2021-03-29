@@ -27,7 +27,7 @@ jobs:
         dotnet-version: ${{ matrix.dotnet-version }}
     - name: Install dependencies
       run: dotnet restore
-    - name: Install dependencies
+    - name: Dotnet Publish changes
       run: dotnet publish -c Release -o release
     - name: Set build pack
       env:
