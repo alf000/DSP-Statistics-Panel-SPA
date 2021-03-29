@@ -17,3 +17,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "dsp-statistics-panel" #Must be unique in Heroku
           heroku_email: "alf@herland.as"
+          remote_branch: "main"
