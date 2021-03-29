@@ -1,8 +1,14 @@
 #!usr/bin/expect -f"
+set email [lindex $argv 0]
+set passwd [lindex $argv 1]
 spawn heroku login -i
 expect -exact "heroku: Enter your login credentials"
 expect -exact "Email:"
-send -- "alf@herland.as\r"
+send "$email\r"
 expect -exact "Password:"
-send -- "test123FEST\r"
-expect eof
+send "$passwd"
+send "\r"
+expect
+send "\r"
+expect
+puts "Done"
