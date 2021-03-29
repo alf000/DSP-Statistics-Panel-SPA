@@ -22,7 +22,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install expect
-      run: sudo apt-get install expect
+      run:
+        sudo apt-get update
+        sudo apt-get install expect
+    - name: Update Heroku
+      run: sudo apt-get upgrade heroku
     - name: Set execute
       run: chmod 755 heroku-login.exp
     - name: Set build pack
