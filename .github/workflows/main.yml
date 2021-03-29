@@ -21,6 +21,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Install expect
+      run: sudo apt-get install expect
     - name: Set build pack
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
