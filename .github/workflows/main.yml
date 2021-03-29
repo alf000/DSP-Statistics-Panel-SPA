@@ -24,11 +24,9 @@ jobs:
     - name: Install expect
       run:
         sudo apt-get update && apt-get install expect
-    - name: Update Heroku
-      run: sudo apt-get upgrade heroku
     - name: Set execute
       run: chmod 755 heroku-login.exp
-    - name: Set build pack
+    - name: Login to Heroku
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
