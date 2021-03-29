@@ -21,24 +21,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET Core SDK ${{ matrix.dotnet }}
-      uses: actions/setup-dotnet@v1.7.2
-      with:
-        dotnet-version: ${{ matrix.dotnet-version }}
-    - name: Install dependencies
-      run: dotnet restore
-    - name: Dotnet Publish changes
-      run: dotnet publish -c Release -o release
     - name: Set build pack
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku buildpacks:set https://github.com/heroku/heroku-buildpack-static -a dsp-statistics-panel ${{ secrets.HEROKU_API_KEY }} 
-    - name: Install static
-      env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku plugins:install heroku-cli-static ${{ secrets.HEROKU_API_KEY }} 
-    - name: Deploy
-      env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku static:deploy -a dsp-statistics-panel ${{ secrets.HEROKU_API_KEY }}
-      
+        HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
+        HEROKU_PASSWD: ${{ secrets.HEROKU_PASSWD }}
+      run:
+        pwd
+
