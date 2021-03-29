@@ -28,6 +28,6 @@ jobs:
           heroku_email: alf@herland.as
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: dsp-statistics-panel
-          branch: HEAD
+          branch: main
           useforce: false
           dynamicFiles: false
