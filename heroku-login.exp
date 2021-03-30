@@ -12,22 +12,18 @@ set NUM 0
 for {set NUM 0} {$NUM <= 5} {incr NUM} {
     expect { 
             "Email: " {send "$email"
-                       expect "*"
                         send "\r"
                         set NUM 6
                        }
-            exp_continue
     }
 }
 
 for {set NUM 0} {$NUM <= 5} {incr NUM} {
     expect { 
             "Password: " {send "$passwd"
-                       expect "*"
                         send "\r"
                         set NUM 6
                        }
-            exp_continue
     }
 }
 
@@ -37,7 +33,6 @@ for {set NUM 0} {$NUM <= 5} {incr NUM} {
             "$email" {
                     set NUM 6
                        }
-            exp_continue
     }
 }
 
