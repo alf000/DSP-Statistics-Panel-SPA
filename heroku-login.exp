@@ -12,16 +12,17 @@ expect -exact "Email: "
 send "$email"
 expect "*"
 send "\r"
-expect "*"
-expect "*"
-expect "*"
-expect "*"
-expect -exact "Password: "
-send "$passwd"
-send "\r"
-expect "*"
-expect "*"
-expect "*"
-expect "*"
-expect "*"
-expect "Logged in as $email"
+expect { 
+            # If the phrase 'Password:' seen, then it will send the password
+            "Password:" {send "$passwd\r"}
+            # If 'timeout' happened, then it will send some keys &
+            # 'expect' will be looped again. 
+            timeout {send -- \033-; exp_continue}
+    }
+expect { 
+            
+            "Logged in as $email"
+            # If 'timeout' happened, then it will send some keys &
+            # 'expect' will be looped again. 
+            timeout {send -- \033-; exp_continue}
+    }
