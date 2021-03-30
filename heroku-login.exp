@@ -35,6 +35,13 @@ for {set NUM 0} {$NUM <= 5} {incr NUM} {
                        }
     }
   }
+ for {set NUM 0} {$NUM <= 5} {incr NUM} {
+    expect { 
+            "\r\n" {
+                    set NUM 6
+                       }
+    }
+  }
  for {set NUM 0} {$NUM <= 13} {incr NUM} {
     expect { 
             "$email" {
