@@ -11,9 +11,6 @@ send "$email\r"
 expect -exact "\r\n"
 expect -exact "$email\r\n"
 expect -exact "Password: "
-send "$passwd\r"
+send "$passwd"
 send "\r"
-expect
-send "\r"
-expect
 puts "Done"
