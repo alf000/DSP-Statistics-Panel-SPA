@@ -41,8 +41,8 @@ jobs:
         HEROKU_PASSWD: ${{ secrets.HEROKU_PASSWD }}
       run:
         expect -d heroku-login.exp ${{ secrets.HEROKU_PASSWD }}
-    - name: Set build pack
-      run: heroku buildpacks:set https://github.com/heroku/heroku-buildpack-static -a dsp-statistics-panel
+    #- name: Set build pack
+    #  run: heroku buildpacks:set https://github.com/heroku/heroku-buildpack-static -a dsp-statistics-panel
     - name: Deploy
       run: heroku static:deploy -a dsp-statistics-panel
 
