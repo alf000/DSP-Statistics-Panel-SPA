@@ -18,22 +18,18 @@ for {set NUM 0} {$NUM <= 5} {incr NUM} {
                        }
             exp_continue
     }
-    
+}
 
+for {set NUM 0} {$NUM <= 5} {incr NUM} {
+    expect { 
+            "Email: $email" {
+                        set NUM 6
+                       }
+            exp_continue
+    }
 }
 
 
-
-
-
-
-expect { 
-            
-            "$email"
-            # If 'timeout' happened, then it will send some keys &
-            # 'expect' will be looped again. 
-            timeout {send -- \033-; exp_continue}
-    }
 
 
 expect { 
