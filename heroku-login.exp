@@ -34,8 +34,10 @@ for {set NUM 0} {$NUM <= 5} {incr NUM} {
 
 for {set NUM 0} {$NUM <= 5} {incr NUM} {
     expect { 
-            eof " {
+            "$email" {
                     set NUM 6
                        }
+            exp_continue
     }
 }
+
