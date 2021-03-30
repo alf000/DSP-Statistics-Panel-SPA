@@ -40,6 +40,7 @@ for {set NUM 0} {$NUM <= 5} {incr NUM} {
             "$email" {
                     set NUM 6
                        }
+             "*"
     }
 }
 
