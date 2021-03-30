@@ -8,9 +8,9 @@ expect -exact "heroku: Enter your login credentials"
 expect -exact "\r\n"
 expect -exact "Email: "
 send "$email\r"
-expect -exact "\r\n"
-expect -exact "$email\r\n"
-expect -exact ""
+expect
+expect 
+expect
 expect -exact "Password: "
 send "$passwd"
 send "\r"
