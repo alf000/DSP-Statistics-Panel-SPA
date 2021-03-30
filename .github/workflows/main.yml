@@ -21,6 +21,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Setup .NET Core SDK ${{ matrix.dotnet }}
+      uses: actions/setup-dotnet@v1.7.2
+      with:
+        dotnet-version: ${{ matrix.dotnet-version }}
+    - name: Install dependencies
+      run: dotnet restore
+    - name: Dotnet Publish changes
+      run: dotnet publish -c Release -o release
     - name: Install expect
       run:
         sudo apt-get update && sudo apt-get install expect
@@ -33,6 +41,8 @@ jobs:
         HEROKU_PASSWD: ${{ secrets.HEROKU_PASSWD }}
       run:
         expect -d heroku-login.exp ${{ secrets.HEROKU_PASSWD }}
-    - name: check
-      run: heroku clients
+    - name: Set build pack
+      run: heroku buildpacks:set https://github.com/heroku/heroku-buildpack-static -a dsp-statistics-panel
+    - name: Deploy
+      run: heroku static:deploy -a dsp-statistics-panel
 
