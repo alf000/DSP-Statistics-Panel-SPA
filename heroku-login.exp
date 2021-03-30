@@ -29,7 +29,7 @@ for {set NUM 0} {$NUM <= 5} {incr NUM} {
 
 for {set NUM 0} {$NUM <= 5} {incr NUM} {
     expect { 
-            "Logged in as: " {
+            "Logged in as " {
                         set NUM 6
                        }
     }
