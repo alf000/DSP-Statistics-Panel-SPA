@@ -3,9 +3,6 @@ set email [lindex $argv 0]
 set passwd [lindex $argv 1]
 spawn heroku login -i
 expect 
-expect
-expect
-expect
 send "alf@herland.as"
 expect
 send "$passwd"
