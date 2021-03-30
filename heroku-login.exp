@@ -6,12 +6,36 @@ spawn heroku login -i
 expect "*"
 expect -exact " \u203a   Warning: Our terms of service have changed: \r\n \u203a   https://dashboard.heroku.com/terms-of-service\r\n"
 expect -exact "heroku: Enter your login credentials"
-expect -exact "\r\n"
-expect "*"
-expect -exact "Email: "
-send "$email"
-expect "*"
-send "\r"
+
+set NUM 0
+
+for {set NUM 0} {$NUM <= 5} {incr NUM} {
+    expect { 
+            "Email: " {send "$email"
+                       expect "*"
+                        send "\r"
+                        set NUM 6
+                       }
+            exp_continue
+    }
+    
+
+}
+
+
+
+
+
+
+expect { 
+            
+            "$email"
+            # If 'timeout' happened, then it will send some keys &
+            # 'expect' will be looped again. 
+            timeout {send -- \033-; exp_continue}
+    }
+
+
 expect { 
             # If the phrase 'Password:' seen, then it will send the password
             "Password:" {send "$passwd\r"}
