@@ -21,7 +21,7 @@ expect {
     }
 expect { 
             
-            "Logged in as $email"
+            "Logged in as $email" {send \r"}
             # If 'timeout' happened, then it will send some keys &
             # 'expect' will be looped again. 
             timeout {send -- \033-; exp_continue}
