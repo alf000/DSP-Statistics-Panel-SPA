@@ -23,4 +23,4 @@ expect "*"
 expect "*"
 expect "*"
 expect "*"
-expect
+expect "Logged in as $email"
