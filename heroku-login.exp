@@ -1,6 +1,6 @@
 #!usr/bin/expect -f"
-set email [lindex $argv 3]
-set passwd [lindex $argv 4]
+set email [lindex $argv 2]
+set passwd [lindex $argv 3]
 set timeout 60
 spawn heroku login -i
 expect "*"
