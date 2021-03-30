@@ -22,7 +22,9 @@ for {set NUM 0} {$NUM <= 5} {incr NUM} {
 
 for {set NUM 0} {$NUM <= 5} {incr NUM} {
     expect { 
-            "Email: $email" {
+            "Password: " {send "$passwd"
+                       expect "*"
+                        send "\r"
                         set NUM 6
                        }
             exp_continue
@@ -30,19 +32,11 @@ for {set NUM 0} {$NUM <= 5} {incr NUM} {
 }
 
 
-
-
-expect { 
-            # If the phrase 'Password:' seen, then it will send the password
-            "Password:" {send "$passwd\r"}
-            # If 'timeout' happened, then it will send some keys &
-            # 'expect' will be looped again. 
-            timeout {send -- \033-; exp_continue}
+for {set NUM 0} {$NUM <= 5} {incr NUM} {
+    expect { 
+            eof " {
+                    set NUM 6
+                       }
+            exp_continue
     }
-expect { 
-            
-            "Logged in as $email" {send \r"}
-            # If 'timeout' happened, then it will send some keys &
-            # 'expect' will be looped again. 
-            timeout {send -- \033-; exp_continue}
-    }
+}
