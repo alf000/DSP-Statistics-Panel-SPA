@@ -1,7 +1,7 @@
 #!usr/bin/expect -f"
 set email "alf@herland.as"
 set passwd [lindex $argv 0]
-set timeout 30
+set timeout 10
 spawn heroku login -i
 expect "*"
 expect -exact " \u203a   Warning: Our terms of service have changed: \r\n \u203a   https://dashboard.heroku.com/terms-of-service\r\n"
@@ -36,14 +36,7 @@ for {set NUM 0} {$NUM <= 5} {incr NUM} {
                "?"
     }
   }
- for {set NUM 0} {$NUM <= 5} {incr NUM} {
-    expect { 
-            "\r\n" {
-                    set NUM 6
-                       }
-             "?"
-    }
-  }
+
  for {set NUM 0} {$NUM <= 13} {incr NUM} {
     expect { 
             "$email" {
