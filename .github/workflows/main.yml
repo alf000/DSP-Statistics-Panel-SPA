@@ -32,7 +32,7 @@ jobs:
         HEROKU_EMAIL: ${{ secrets.HEROKU_EMAIL }}
         HEROKU_PASSWD: ${{ secrets.HEROKU_PASSWD }}
       run:
-        expect -d heroku-login.exp ${{ secrets.HEROKU_EMAIL }} ${{ secrets.HEROKU_PASSWD }}
+        expect -d heroku-login.exp ${{ secrets.HEROKU_PASSWD }}
     - name: check
       run: heroku clients
 
