@@ -43,10 +43,9 @@ else
 }
 
 @code {
-    private List<ResponseData>
+    private List<Models.GameStat>
         listOfResponses;
-    private ResponseData response;
-    private int lim;
+    private Models.GameStat response;
     private int currentCount = 0;
     private const string ServiceEndpoint = "http://localhost:42069/";
     private void IncrementCount()
@@ -55,11 +54,5 @@ else
     }
     protected override async Task OnInitializedAsync() => await GetTodoItems();
 
-    private async Task GetTodoItems() => response = await Http.GetFromJsonAsync<ResponseData>(ServiceEndpoint);
-    public class ResponseData
-    {
-        public double TimeElapsed { get; set; }
-        public int[] ResponseItemsIds { get; set; }
-        public int[] ResponseItemsCounts { get; set; }
-    }
+    private async Task GetTodoItems() => response = await Http.GetFromJsonAsync<Models.GameStat>(ServiceEndpoint);
 }
