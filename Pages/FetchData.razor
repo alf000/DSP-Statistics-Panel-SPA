@@ -1,9 +1,11 @@
 ﻿@page "/fetchdata"
 @inject HttpClient Http
 
+
+
 <h1>Statistics</h1>
 
-<p>Here is a listing of a time stamp with data from the game.</p>
+<p>Here is a listing of a time stamp with data from the game.1</p>
 
 @if (response == null)
 {
@@ -21,7 +23,7 @@ else
                 <th>Count</th>
             </tr>
 
-            @for (var i = 0; i < lim; i++)
+            @for (var i = 0; i < response.ResponseItemsIds.Length; i++)
             {
                 <tr>
 
@@ -42,28 +44,22 @@ else
 
 @code {
     private List<ResponseData>
-    listOfResponses;
+        listOfResponses;
     private ResponseData response;
     private int lim;
     private int currentCount = 0;
-
+    private const string ServiceEndpoint = "http://localhost:42069/";
     private void IncrementCount()
     {
-    currentCount++;
+        currentCount++;
     }
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync() => await GetTodoItems();
+
+    private async Task GetTodoItems() => response = await Http.GetFromJsonAsync<ResponseData>(ServiceEndpoint);
+    public class ResponseData
     {
-
-    response = await Http.GetFromJsonAsync<ResponseData>
-        ("http://localhost:42069/");
-        lim = response.ResponseItemsIds.Length;
-        }
-
-        public class ResponseData
-        {
         public double TimeElapsed { get; set; }
-        public int[] ResponseItemsIds{ get; set; }
-        public int[] ResponseItemsCounts{ get; set; }
-        }
-
-        }
+        public int[] ResponseItemsIds { get; set; }
+        public int[] ResponseItemsCounts { get; set; }
+    }
+}
